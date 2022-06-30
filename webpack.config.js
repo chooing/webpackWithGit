@@ -1,6 +1,7 @@
 const path = require('path'); // 운영체제별로 상이한 경로문법을 동일하게 하기위해 작성
 // const myLoader = require('./myLoader');
 const webpack = require('webpack');
+const childProcess = require('child_process'); 
 
 module.exports = {
     mode: 'development',
@@ -40,7 +41,11 @@ module.exports = {
     },
     plugins:[
         new webpack.BannerPlugin({
-            banner: '마지막 빌드 시간은 ' + new Date().toLocaleString() + ' 입니다.'
+            banner: `
+                Commit version: ${childProcess.execSync('git rev-parse --short HEAD')}
+                Committer name: ${childProcess.execSync('git config user.name')}
+                Commit Date: ${new Date().toLocaleString()}
+            `
         })
     ]
 
