@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        function Person() {
+            let age = 33;
+
+            return {
+                getAge: function () { return age },
+                setAge: function (data) { age = data }
+            }
+        }
+
+        function PersonType() {
+            this.age = 33;
+
+        }
+
+        PersonType.prototype.getAge = function () {
+            return age;
+        }
+
+    </script>
+</body>
+</html>
