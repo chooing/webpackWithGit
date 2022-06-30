@@ -3,8 +3,13 @@ const path = require('path'); // 운영체제별로 상이한 경로문법을 �
 const webpack = require('webpack');
 const childProcess = require('child_process'); 
 
+const dotenv = require('dotenv');
+dotenv.config();
+// console.log(process.env.DEV_API);
+// console.log(process.env.PRO_API);
+
 module.exports = {
-    mode: 'development',
+    mode: 'development', //production / development
     entry: {
         main: path.resolve('./src/app.js')
     },
@@ -46,6 +51,10 @@ module.exports = {
                 Committer name: ${childProcess.execSync('git config user.name')}
                 Commit Date: ${new Date().toLocaleString()}
             `
+        }),
+        new webpack.DefinePlugin({
+            dev: JSON.stringify(process.env.DEV_API),
+            pro: JSON.stringify(process.env.PRO_API)
         })
     ]
 
